@@ -1,0 +1,67 @@
+<div class="grid12">
+    <div class="spanGrid10Center container">
+        <div class="span10 disclaimer"> 
+            <p class="mat-caption"> *** Covid Data from https://www.data.go.kr/data </p>
+        </div>
+
+        <div class="span2 mat-elevation-z2 elevationOverlay sideContainer" fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="selectedDate" (dateChange)="getCovidData(selectedDate.value)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <h1 class="mat-display-1"> Today's covid cases as of {{todaysDate}}  </h1>
+            <div fxLayout="column"> 
+                <p class="mat-body-1" fxFlex> Infection: {{infectionCntToday}} </p>
+                <p class="mat-body-1" fxFlex> Death: {{deathCntToday}} </p>
+                <!-- <p class="mat-body-1"> Recovered: {{}} </p> -->
+            </div>
+        </div>
+        <div class="spanGrid8 graphContainer">
+            <div class="span4 mat-elevation-z2 elevationOverlay">
+                <h1 class="mat-display-2"> Covid Cumulative {{genderToggleText}} by Gender  </h1>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="maskIcon" svgIcon="masks"></mat-icon>
+                    <mat-slide-toggle
+                        [color]="color"
+                        [checked]="checked"
+                        [disabled]="disabled"
+                        (click)="toggleInfectDeathCount('gender')">
+                    </mat-slide-toggle>
+                    <mat-icon>local_hospital</mat-icon>
+                </div>
+                <canvas id="covidGenderChart" style="width:100%"></canvas>
+            </div>
+            <div class="span4 mat-elevation-z2 elevationOverlay">
+                <h1 class="mat-display-2"> Covid Cumulative {{ageToggleText}} by Age Group </h1>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="maskIcon" svgIcon="masks" ></mat-icon>
+                    <mat-slide-toggle
+                        [color]="color"
+                        [checked]="checked"
+                        [disabled]="disabled"
+                        (click)="toggleInfectDeathCount('age')">
+                    </mat-slide-toggle>
+                    <mat-icon>local_hospital</mat-icon>
+                </div>
+                <canvas id="covidAgeChart" style="width:100%"></canvas>
+            </div>
+            <div class="span8 mat-elevation-z2 elevationOverlay">
+                <h1 class="mat-display-2"> Covid Cumulative {{regionToggleText}} by Region </h1>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="maskIcon" svgIcon="masks" ></mat-icon>
+                    <mat-slide-toggle
+                        [color]="color"
+                        [checked]="checked"
+                        [disabled]="disabled"
+                        (click)="toggleInfectDeathCount('region')">
+                    </mat-slide-toggle>
+                    <mat-icon>local_hospital</mat-icon>
+                </div>
+                <canvas id="covidRegionChart" style="width:100%"></canvas>
+            </div>       
+        </div>
+    </div>
+</div>

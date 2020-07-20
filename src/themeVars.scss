@@ -1,0 +1,417 @@
+@import '~@angular/material/_theming';
+
+/**
+*  Stores static theme variables. It can be used 2 ways
+*   1. Imported by theme.scss for global use
+*   2. If a component needs reference to a specific theme data, it can import this file.
+*/
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, sans-serif',
+  $display-4: mat-typography-level(96px, 144px, 500),
+  $display-3: mat-typography-level(76px, 96px, 500),
+  $display-2: mat-typography-level(32px, 48px, 400),
+  $display-1: mat-typography-level(20px, 24px, 400),
+  $headline: mat-typography-level(24px, 32px, 400),
+  $title: mat-typography-level(20px, 32px, 500),
+  $subheading-2: mat-typography-level(16px, 28px, 400),
+  $subheading-1: mat-typography-level(15px, 24px, 400),
+  $body-1: mat-typography-level(16px, 24px, 400),
+  $body-2: mat-typography-level(14px, 20px, 400),
+  /* $caption: mat-typography-level(16px, 20px, 400), */
+  $button: mat-typography-level(14px, 20px, 500),
+  $input: mat-typography-level(inherit, 1.125, 400)
+);
+
+// Dark theme
+$dark-primary: mat-palette($mat-red, 500, 400, 600);
+$dark-accent:  mat-palette($mat-indigo, A200, A100, A700);
+$dark-warn:    mat-palette($mat-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+//Light theme
+$light-primary: mat-palette($mat-red, 500, 400, 600);
+$light-accent:  mat-palette($mat-indigo, A200, A100, A700);
+$light-warn:    mat-palette($mat-orange);
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+
+//8 point config
+$eight-pt: 8px;
+$toolbarHeightLarge:64px;
+$toolbarHeightSmall:56px;
+$smallGap:16px;
+$largeGap:24px;
+// $toolbarHeightUltraSmall:40px;
+
+
+//12 column responsive grid layout
+.grid12 {
+  // height:100%;  ?? impacting header height
+  display:grid;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 16px;
+    padding: 0 16px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 16px;
+    padding: 0 16px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 24px;
+    padding: 0 24px;
+  }
+
+  @media screen and (min-width: 840px) {   // large
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 24px;
+    padding: 0 24px;
+  }
+
+}
+
+.grid10 {
+  height:100%;
+  display:grid;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:16px;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:24px;
+  }
+}
+
+.grid8{
+  height:100%;
+  display:grid;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap:16px;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:24px;
+  }
+
+}
+
+.grid6{
+  display:grid;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:16px;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:24px;
+  }
+
+}
+
+.grid5{
+  display:grid;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap:16px;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:24px;
+  }
+}
+
+.grid4{
+  display:grid;
+
+}
+
+.grid3 {
+  display:grid;
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-column-gap:24px;
+  }
+}
+
+.grid2{
+  display:grid;
+
+  display:grid;
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:24px;
+  }
+}
+
+
+//Span or column
+.span12 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 8;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 1 / span 12;
+  }
+}
+
+.spanGrid12 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 8;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 1 / span 12;
+  }
+
+  @extend .grid12;
+}
+
+.spanGrid10Center {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 3;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 2 / span 10;
+  }
+
+  @extend .grid10;
+}
+
+.span10 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 2;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 5;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: span 10;
+  }
+
+}
+
+.span8 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 1;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 3;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: span 8;
+  }
+}
+
+.spanGrid8 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 1;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 3;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: span 8;
+  }
+
+  @extend .grid8;
+}
+
+.span8Center {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 3;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 3/span 8;
+  }
+
+  @extend .grid8;
+}
+
+
+.spanGrid6Center {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 2 / span 4;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 4 / span 6;
+  }
+
+  @extend .grid6;
+}
+
+.span6Center {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    grid-column: 2 / span 6;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 4 / span 6;
+  }
+}
+
+.span6 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 3;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 1 / span 6;
+  }
+}
+
+.spanGrid6 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 3;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 1 / span 6;
+  }
+
+  @extend .grid6;
+}
+
+.span5 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 2;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: span 5;
+  }
+}
+
+.spanGrid5 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 2;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: span 5;
+  }
+
+  @extend .grid5;
+}
+
+.span4 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 2;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-column:span 4;
+  }
+}
+
+.span3 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 2;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 1/ span 3;
+  }
+}
+
+.span2 {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 2;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: span 2;
+  }
+}
+
+.span1 {
+  grid-column: span 1;
+}

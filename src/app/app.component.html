@@ -1,0 +1,18 @@
+<mat-sidenav-container class="drawer-container" [hasBackdrop]="false">
+  <mat-sidenav #drawer class="drawer mat-elevation-z6 my-dark-theme" mode="{{mobileQuery.matches ? over : side}}" opened="false" [fixedInViewport]="true" fixedTopGap="{{mobileQuery.matches ? 56 : 64}}">
+    <mat-nav-list>
+      <a mat-list-item routerLink="covid" routerLinkActive="active-list-item">
+        <div class="row-sidenav-item"> 
+          <mat-icon svgIcon="coronavirus"></mat-icon>
+          <div>Covid Tracker</div>
+        </div>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <app-header class="searchme"></app-header>
+      <router-outlet #outletContent="outlet" class="mat-elevation-z1 router-flex"></router-outlet>
+      <mat-divider></mat-divider>
+      <app-footer [style.top]="routerHeight"></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

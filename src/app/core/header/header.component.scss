@@ -1,0 +1,85 @@
+@import '~@angular/material/_theming';
+@import '~src/themeVars.scss';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-header($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  .mat-toolbar.header-toolbar {
+    background-color: mat-color($primary, darker);
+    color:mat-color($primary, 50);
+    @include mat-elevation-transition;
+    padding: 0px 16px;
+  }
+
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  @extend .grid12;
+}
+
+
+.header-toolbar .mat-icon,
+.header-toolbar .mat-slide-toggle,
+.header-toolbar img
+{
+    vertical-align: middle;
+    
+}
+
+.header-toolbar .mat-icon-button {
+  width: unset;
+  height: unset;
+}
+
+.logoContainer {
+  grid-column: 1 / span 2;
+}
+
+
+.themeToggleContainer {
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 3 / span 2;
+  }
+  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+    grid-column: 7 / span 2;
+  }
+  @media screen and (min-width: 720px) {   //medium
+    grid-column: 11 / span 2;
+  }
+}
+
+.flex-container {
+  display:flex;
+
+}
+
+.fill-remaining-space {
+  grid-column: 3 / span 8;
+}
+
+.mat-toolbar > img {
+  padding: 0 0 0 16px;
+  width:initial;
+}
+
+mat-icon {
+    padding: 0 24px;
+    width:initial;
+}

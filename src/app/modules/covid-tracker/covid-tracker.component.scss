@@ -1,0 +1,144 @@
+@import '~@angular/material/_theming';
+@import '~src/themeVars.scss';
+
+@mixin set-theme-covid-tracker($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .elevationOverlay {
+    background-color: mat-color($background, card);
+
+    @media screen and (max-width: 600px) {   //ultra small
+        padding:16px;
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+        padding:16px;
+    }
+
+    @media screen and (min-width: 720px) and (max-width: 840) {
+        padding:24px;
+    }
+
+    @media screen and (min-width: 840px) {   //large
+        padding:24px;
+    }
+  }
+
+
+}
+
+.container {
+  height: auto;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    padding: #{$toolbarHeightSmall} 24px 0px 24px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    padding: #{$toolbarHeightSmall} 24px 0px 24px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    padding: #{$toolbarHeightLarge} 0px 0px 0px;
+  }
+
+  @media screen and (min-width: 840px) {   //large
+    padding: #{$toolbarHeightLarge} 0px 0px 0px;
+  }
+}
+
+.sideContainer {
+  @media screen and (max-width: 600px) {   //ultra small
+      margin:16px 0px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+      margin:16px 0px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+      margin:24px 0px;
+  }
+
+  @media screen and (min-width: 840px) {   //large
+      margin:24px 0px;
+  }
+}
+
+  .graphContainer {
+    grid-template-rows: auto 1fr;
+
+    @media screen and (max-width: 600px) {   //ultra small
+      margin:16px 0px;
+      grid-row-gap:16px;
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+      margin:16px 0px;
+      grid-row-gap:16px;
+    }
+
+    @media screen and (min-width: 720px) and (max-width: 840) {
+      margin:24px 0px;
+      grid-row-gap:24px;
+    }
+
+    @media screen and (min-width: 840px) {   //large
+      margin:24px 0px;
+      grid-row-gap:24px;
+    }
+  }
+
+  .covidGenderChart {
+    grid-row:1;
+  }
+
+  .covidAgeChart {
+    grid-row:1;
+  }
+
+  .covidRegionChart {
+    grid-row:2 / span 1;
+  }
+
+  mat-icon {
+    padding: 0 24px;
+    width:initial;  //default width of this image
+}
+
+.maskIcon > svg {
+  width:auto;
+}
+
+.maskIcon > .svg {
+  width:auto;
+}
+
+.maskIcon svg {
+  width:auto;
+}
+
+.disclaimer {
+  @media screen and (max-width: 600px) {   //ultra small
+    margin-top:16px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    margin-top:16px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    margin-top:24px;
+  }
+
+  @media screen and (min-width: 840px) {   //large
+    margin-top:24px;
+  }
+
+
+}

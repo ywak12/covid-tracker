@@ -1,0 +1,43 @@
+@import '~@angular/material/_theming';
+@import './app/core/header/header.component';
+@import './app/core/footer/footer.component';
+@import './app/app.component';
+@import './app/modules/covid-tracker/covid-tracker.component';
+@import './themeVars';
+@include mat-core($custom-typography);
+
+@mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed
+{
+  @include set-theme-header($theme);
+  @include set-theme-sidenav($theme);
+  @include set-theme-footer($theme);
+  @include set-theme-covid-tracker($theme)
+}
+
+.dark-theme {
+  @include set-theme($dark-theme);
+  @include angular-material-theme($dark-theme);
+  @include mat-core($custom-typography);
+}
+.light-theme {
+  @include set-theme($light-theme);
+  @include angular-material-theme($light-theme);
+  @include mat-core($custom-typography);
+}
+
+.mat-display-4 {
+  margin: 0;
+}
+
+.mat-display-3 {
+  margin: 0;
+}
+
+
+.mat-display-2 {
+  margin: 0;
+}
+
+.mat-display-1 {
+  margin: 0;
+}

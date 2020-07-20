@@ -1,0 +1,22 @@
+<mat-toolbar #headerToolbar class="header-toolbar" [ngClass]="{ 'mat-elevation-z4' : isElevated}" > 
+  <span class="logoContainer">
+    <button mat-icon-button [class.active]="toggleActive" (click)="toggleSidenav()">
+      <mat-icon [@fadeIn] >menu</mat-icon>
+    </button>
+  </span>
+
+  <span class="themeToggleContainer"> 
+    <div fxLayout="row">
+      <span class="fill-remaining-space"></span>
+        <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.2}}">brightness_high</mat-icon>
+        <mat-slide-toggle
+              [color]="color"
+              [checked]="checked"
+              [disabled]="disabled"
+              (click)="toggleNightmode()"
+              [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.4}}">
+        </mat-slide-toggle>
+        <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.6}}">brightness_3</mat-icon>
+    </div>
+  </span>
+</mat-toolbar>

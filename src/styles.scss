@@ -1,0 +1,51 @@
+@import url("./assets/animate/animate.min.css");
+@import '~@angular/material/_theming';
+
+html, body { 
+  margin: 0;
+  height:100%; 
+  width:100%; 
+}
+
+/*
+  Universal box sizing with inheritance.
+*/
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing:inherit;
+}
+
+p {
+  margin-block-start: 0;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size:24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform:none;
+  letter-spacing:normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction:ltr;
+
+  /* Support for all webkit browsers */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for internet explorer */
+  font-feature-settings: 'liga';
+
+
+}

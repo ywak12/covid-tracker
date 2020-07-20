@@ -1,0 +1,129 @@
+@import '~@angular/material/_theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-footer($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  .footer-top {
+    font-size: 12px;
+
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+
+    text-align: center;
+    height: auto;
+    min-height: 72px;
+    @media screen and (max-width: 600px) {   //ultra small
+      padding: 16px;
+    }
+    @media screen and (min-width: 600px) {  //large
+      padding:72px;
+    }
+  }
+  
+  .footer-top > span {
+    height:24px;
+  }
+
+  .footer-top > span > a {
+    height:inherit;
+  }
+
+  .footer-top > a > img {
+    padding:0px 8px;
+    height:inherit;
+    display:block;
+  }
+
+  .footer-top-logos {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+  }
+
+  .footer-top-logos > a {
+    padding: 8px 8px;
+  }
+
+  .footer-top-logos > a > img {
+    height:24px;
+    display:block;
+  }
+
+  .footer-top-text > span{
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+    padding:0px 8px;
+  }
+
+  .footer-top-text> span:hover {
+    color: mat-color($accent);
+  }
+
+  .footer-bottom {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+
+    text-align: center;
+    height: auto;
+
+    background-color: mat-color($primary, darker);
+  }
+
+  .footer-bottom {
+    width:100%;
+    background-color: mat-color($primary, darker);
+  }
+
+  .myname {
+    color: mat-color($accent);
+  }
+
+  .linkedin_img {
+    color:black;
+    height:24px;
+  }
+
+}
+
+.github_img {
+  height: 24px;
+}
+
+.footer-list {
+	align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0px 8px;
+}
+
+.footer-list > p {
+  margin: 0px 8px;
+  margin-top: 8px;
+
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}

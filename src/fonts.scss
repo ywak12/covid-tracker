@@ -1,0 +1,89 @@
+
+
+/**
+  Import Fonts
+  https://medium.com/@aditya_tyagi/import-fonts-in-an-angular-app-the-easy-right-way-ae9e99cab551
+*/
+//Roboto
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: local('Roboto Thin'), local('Roboto-Thin') url('/assets/fonts/Roboto/Roboto-Thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Roboto Light'), local('Roboto-Light'), url('/assets/fonts/Roboto/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url('/assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('/assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+  // src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format('tff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('/assets/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: local('Roboto Black'), local('Roboto-Black'), url('/assets/fonts/Roboto/Roboto-Black.ttf') format('truetype');
+}
+
+//Ubuntu
+@font-face {
+  font-family: 'Ubuntu Mono', monospace;
+  src: url('/assets/fonts/Ubuntu_Mono/UbuntuMono-Bold.ttf') format('truetype');
+  // font-weight: bold;
+}
+
+
+//RobotoMono
+@font-face {
+  font-family: 'Roboto Mono', monospace;
+  src: url('/assets/fonts/Roboto_Mono/RobotoMono.ttf') format('truetype');
+  // font-weight: bold;
+}
+
+
+
+/**
+* Material Icons (Self Hosting)
+* Warning: increases ng build time significantly ( 2 min)
+*/
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/material-design-icons-master/iconfont/MaterialIcons-Regular.woff2") format('woff2')
+  // src: url("/assets/material-design-icons-3.0.1/iconfont/MaterialIcons-Regular.woff2") format('woff2')
+  // src: local('Material Icons'),
+        // local('MaterialIcons-Regular'),
+        // url("/assets/material-design-icons-3.0.1/MaterialIcons-Regular.woff2") format('woff2')
+        // url("/assets/material-design-icons-3.0.1/MaterialIcons-Regular.woff") format('woff')
+        // url("/assets/material-design-icons-3.0.1/.ttf") format('truetype')
+}

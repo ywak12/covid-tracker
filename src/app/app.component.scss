@@ -1,0 +1,99 @@
+@import '~@angular/material/_theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-sidenav($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  /* Active List Item */
+  .active-list-item {
+    color: mat-color($primary) !important;
+  }
+}
+
+/* HEADER */
+app-header {
+  position:fixed;
+  width:100%;
+  z-index: 8;
+}
+
+/* SIDENAV*/
+app-sidenav {
+  position: sticky!important; 
+  top:0!important; 
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+$some-other-color: mat-palette($mat-red, 700, 100, 800);
+
+mat-sidenav-container, mat-sidenav-content{
+  display: block; 
+  height: 100%;
+}
+
+/* Column Container */
+.drawer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Set width of sidenav */
+.drawer {
+  width:256px;
+}
+
+.drawer mat-icon {
+  padding: 4px 4px;
+}
+
+.row-sidenav-item {
+  display: flex;
+  flex-direction: row; 
+
+  align-items: center; 
+  text-align: center;
+  
+}
+
+.row-sidenav-item > mat-icon {
+  box-sizing: initial;          //don't use border-box for mat-icon
+  padding-right:4px;
+  margin-right:8px;
+}
+
+/**
+  Router CSS
+*/
+router-outlet.router-flex + * {  
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow:hidden;
+}
+
+::ng-deep .outlet-parallax~* {
+  width:100%;
+  height:800px;
+  top:0;
+}
+::ng-deep router-outlet~* {
+  width:100%;
+  top:0;
+}
