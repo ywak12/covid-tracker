@@ -267,8 +267,9 @@ export class CovidTrackerComponent implements AfterViewInit {
             }]
         },
         options: {
-          responsive: false,
-          display:true
+          responsive: true,
+          display:true,
+          maintainAspectRatio: true
         }
       });
   }
