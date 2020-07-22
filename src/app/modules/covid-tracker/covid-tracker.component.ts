@@ -46,6 +46,8 @@ export class CovidTrackerComponent implements AfterViewInit {
   private ageToggleText: string = "Infection";
   private regionToggleText: string = "Infection";
 
+  private totalInfDeathRegion: string;
+
   constructor(private covidDataClient: CovidDataClient, private datePipe: DatePipe) {
   
   }
@@ -106,31 +108,33 @@ export class CovidTrackerComponent implements AfterViewInit {
       if(this.regionToggle == false) {
         this.regionToggle = true;
         this.regionToggleText = "Death";
+        this.totalInfDeathRegion = this.covidDataRegion[18].deathCnt;
         this.covidRegionChart.data.datasets[0].data = [ 
           this.covidDataRegion[0].deathCnt, this.covidDataRegion[1].deathCnt,
           this.covidDataRegion[2].deathCnt, this.covidDataRegion[3].deathCnt,
           this.covidDataRegion[4].deathCnt, this.covidDataRegion[5].deathCnt,
           this.covidDataRegion[6].deathCnt, this.covidDataRegion[7].deathCnt,
-          this.covidDataRegion[9].deathCnt, this.covidDataRegion[10].deathCnt,
-          this.covidDataRegion[11].deathCnt, this.covidDataRegion[12].deathCnt,
-          this.covidDataRegion[13].deathCnt, this.covidDataRegion[14].deathCnt,
-          this.covidDataRegion[15].deathCnt, this.covidDataRegion[16].deathCnt,
-          this.covidDataRegion[17].deathCnt, this.covidDataRegion[18].deathCnt
+          this.covidDataRegion[8].deathCnt, this.covidDataRegion[9].deathCnt,
+          this.covidDataRegion[10].deathCnt, this.covidDataRegion[11].deathCnt,
+          this.covidDataRegion[12].deathCnt, this.covidDataRegion[13].deathCnt,
+          this.covidDataRegion[14].deathCnt, this.covidDataRegion[15].deathCnt,
+          this.covidDataRegion[16].deathCnt, this.covidDataRegion[17].deathCnt
         ]
       }
       else {
         this.regionToggle = false;
         this.regionToggleText = "Infection";
+        this.totalInfDeathRegion = this.covidDataRegion[18].defCnt;
         this.covidRegionChart.data.datasets[0].data = [ 
           this.covidDataRegion[0].defCnt, this.covidDataRegion[1].defCnt,
           this.covidDataRegion[2].defCnt, this.covidDataRegion[3].defCnt,
           this.covidDataRegion[4].defCnt, this.covidDataRegion[5].defCnt,
           this.covidDataRegion[6].defCnt, this.covidDataRegion[7].defCnt,
-          this.covidDataRegion[9].defCnt, this.covidDataRegion[10].defCnt,
-          this.covidDataRegion[11].defCnt, this.covidDataRegion[12].defCnt,
-          this.covidDataRegion[13].defCnt, this.covidDataRegion[14].defCnt,
-          this.covidDataRegion[15].defCnt, this.covidDataRegion[16].defCnt,
-          this.covidDataRegion[17].defCnt, this.covidDataRegion[18].defCnt
+          this.covidDataRegion[8].defCnt, this.covidDataRegion[9].defCnt,
+          this.covidDataRegion[10].defCnt, this.covidDataRegion[11].defCnt,
+          this.covidDataRegion[12].defCnt, this.covidDataRegion[13].defCnt,
+          this.covidDataRegion[14].defCnt, this.covidDataRegion[15].defCnt,
+          this.covidDataRegion[16].defCnt, this.covidDataRegion[17].defCnt
         ]
       }
       this.covidRegionChart.update();
@@ -192,11 +196,11 @@ export class CovidTrackerComponent implements AfterViewInit {
           this.covidDataRegion[2].defCnt, this.covidDataRegion[3].defCnt,
           this.covidDataRegion[4].defCnt, this.covidDataRegion[5].defCnt,
           this.covidDataRegion[6].defCnt, this.covidDataRegion[7].defCnt,
-          this.covidDataRegion[9].defCnt, this.covidDataRegion[10].defCnt,
-          this.covidDataRegion[11].defCnt, this.covidDataRegion[12].defCnt,
-          this.covidDataRegion[13].defCnt, this.covidDataRegion[14].defCnt,
-          this.covidDataRegion[15].defCnt, this.covidDataRegion[16].defCnt,
-          this.covidDataRegion[17].defCnt, this.covidDataRegion[18].defCnt
+          this.covidDataRegion[8].defCnt, this.covidDataRegion[9].defCnt,
+          this.covidDataRegion[10].defCnt, this.covidDataRegion[11].defCnt,
+          this.covidDataRegion[12].defCnt, this.covidDataRegion[13].defCnt,
+          this.covidDataRegion[14].defCnt, this.covidDataRegion[15].defCnt,
+          this.covidDataRegion[16].defCnt, this.covidDataRegion[17].defCnt
         ]
 
         this.covidRegionChart.update();
@@ -280,6 +284,8 @@ export class CovidTrackerComponent implements AfterViewInit {
     this.canvasRegion = document.getElementById('covidRegionChart');
     this.ctxRegion = this.canvasRegion.getContext('2d')
 
+    this.totalInfDeathRegion = this.covidDataRegion[18].defCnt;
+
     this.covidRegionChart = new Chart(this.ctxRegion, {
       type: 'doughnut',
       data: {
@@ -291,11 +297,11 @@ export class CovidTrackerComponent implements AfterViewInit {
                 this.covidDataRegion[2].defCnt, this.covidDataRegion[3].defCnt,
                 this.covidDataRegion[4].defCnt, this.covidDataRegion[5].defCnt,
                 this.covidDataRegion[6].defCnt, this.covidDataRegion[7].defCnt,
-                this.covidDataRegion[9].defCnt, this.covidDataRegion[10].defCnt,
-                this.covidDataRegion[11].defCnt, this.covidDataRegion[12].defCnt,
-                this.covidDataRegion[13].defCnt, this.covidDataRegion[14].defCnt,
-                this.covidDataRegion[15].defCnt, this.covidDataRegion[16].defCnt,
-                this.covidDataRegion[17].defCnt, this.covidDataRegion[18].defCnt
+                this.covidDataRegion[8].defCnt, this.covidDataRegion[9].defCnt,
+                this.covidDataRegion[10].defCnt, this.covidDataRegion[11].defCnt,
+                this.covidDataRegion[12].defCnt, this.covidDataRegion[13].defCnt,
+                this.covidDataRegion[14].defCnt, this.covidDataRegion[15].defCnt,
+                this.covidDataRegion[16].defCnt, this.covidDataRegion[17].defCnt
               ],
               backgroundColor: [
                   '#949494', '#FF9800', '#C8E6C9',
