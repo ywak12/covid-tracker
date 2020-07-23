@@ -12,7 +12,7 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <h1 class="mat-display-1"> Today's covid cases as of {{todaysDate}}  </h1>
+            <h1 class="mat-display-1"> Covid-19 cases as of {{todaysDate}}  </h1>
             <div fxLayout="column"> 
                 <p class="mat-body-1" fxFlex> Infection: {{infectionCntToday}} </p>
                 <p class="mat-body-1" fxFlex> Death: {{deathCntToday}} </p>
@@ -49,7 +49,7 @@
             </div>
             <div class="span8 mat-elevation-z2 elevationOverlay">
                 <h1 class="mat-display-2"> Covid Cumulative {{regionToggleText}} by Region</h1>
-                <p class ="mat-display-1"> Total {{regionToggleText}}: {{totalInfDeathRegion}}</p>
+                <p class ="mat-display-1"> Total {{regionToggleText}}:{{totalInfDeathRegion}}</p>
                 <div fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon class="maskIcon" svgIcon="masks" ></mat-icon>
                     <mat-slide-toggle

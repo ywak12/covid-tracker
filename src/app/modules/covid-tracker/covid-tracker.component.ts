@@ -142,13 +142,15 @@ export class CovidTrackerComponent implements AfterViewInit {
 
   }
 
-  public getCovidData(selectedDate: any) {
+  public getCovidData(eventDate: any) {
 
 
-    this.todaysDate = selectedDate;
-    this.todaysDatePretty = this.datePipe.transform(this.todaysDate, 'yyyyMMdd');
+    let yesterdayDate = new Date(this.selectedDate.value);
+    yesterdayDate.setDate(this.selectedDate.value.getDate() - 1);
 
-    this.covidDataClient.getCovidDataForToday(this.selectedDate.value).subscribe((data:any)=>{
+    this.todaysDate = yesterdayDate;
+    this.today
+    this.covidDataClient.getCovidDataForToday(yesterdayDate).subscribe((data:any)=>{
 
       let today = data.response.body.items.item[0];
       let yesterday = data.response.body.items.item[1];
@@ -158,8 +160,8 @@ export class CovidTrackerComponent implements AfterViewInit {
 
     });
 
-    this.covidDataClient.getCovidDataByGenderAndAge(this.todaysDate, this.todaysDate).subscribe((data : any)=>{
-      if( this.covidDataGender != undefined && this.covidDataGender.length > 1) {
+    this.covidDataClient.getCovidDataByGenderAndAge(yesterdayDate, yesterdayDate).subscribe((data : any)=>{
+      if(this.covidDataGender != undefined && this.covidDataGender.length > 1) {
         this.covidDataGender = data.response.body.items.item.splice(9, 11);
         this.covidDataAge = data.response.body.items.item.splice(0, 9);
 
@@ -186,11 +188,12 @@ export class CovidTrackerComponent implements AfterViewInit {
 
     });
 
-    this.covidDataClient.getCovidDataByRegion(this.todaysDate, this.todaysDate).subscribe((data : any)=> {
+    this.covidDataClient.getCovidDataByRegion(yesterdayDate, yesterdayDate).subscribe((data : any)=> {
       if( this.covidDataRegion != undefined && this.covidDataRegion.length > 1) {
 
         this.covidDataRegion = data.response.body.items.item;
-
+        this.totalInfDeathRegion = this.covidDataRegion[18].defCnt;
+        
         this.covidRegionChart.data.datasets[0].data = [ 
           this.covidDataRegion[0].defCnt, this.covidDataRegion[1].defCnt,
           this.covidDataRegion[2].defCnt, this.covidDataRegion[3].defCnt,
@@ -322,8 +325,10 @@ export class CovidTrackerComponent implements AfterViewInit {
 }
 
   ngAfterViewInit() {
+    let yesterdayDate = new Date(this.selectedDate.value);
+    yesterdayDate.setDate(this.selectedDate.value.getDate() - 1);
 
-    this.selectedDate = new FormControl(new Date());
+    this.selectedDate = new FormControl(yesterdayDate);
     
     this.getCovidData(this.selectedDate.value);
   }  
