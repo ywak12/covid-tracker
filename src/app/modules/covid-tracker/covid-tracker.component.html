@@ -12,7 +12,7 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <h1 class="mat-display-1"> Covid-19 cases as of {{todaysDate}}  </h1>
+            <h1 class="mat-display-1"> Covid-19 cases as of {{selectedDate.value}}  </h1>
             <div fxLayout="column"> 
                 <p class="mat-body-1" fxFlex> Infection: {{infectionCntToday}} </p>
                 <p class="mat-body-1" fxFlex> Death: {{deathCntToday}} </p>

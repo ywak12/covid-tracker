@@ -20,10 +20,7 @@ export class CovidTrackerComponent implements AfterViewInit {
   public infectionCntToday: number;
   public deathCntToday: number;
 
-  public todaysDate;
-  public todaysDatePretty;
-
-  public selectedDate;           //date picker value
+  public selectedDate = new FormControl();           //date picker value
 
   title = 'angular8chartjs';
   canvasGender: any;
@@ -59,19 +56,13 @@ export class CovidTrackerComponent implements AfterViewInit {
       if(this.genderToggle == false) {
         this.genderToggle = true;
         this.genderToggleText = "Death";
-
-        this.covidGenderChart.data.datasets[0].data = [
-          this.covidDataGender[0].death, this.covidDataGender[1].death
-        ];
       }
       else {
         this.genderToggle = false;
         this.genderToggleText = "Infection";
-        this.covidGenderChart.data.datasets[0].data = [
-          this.covidDataGender[0].confCase, this.covidDataGender[1].confCase
-        ];
       }
  
+      this.populateCovidDataGender();
       this.covidGenderChart.update();
     
     }
@@ -80,26 +71,14 @@ export class CovidTrackerComponent implements AfterViewInit {
       if(this.ageToggle == false) {
         this.ageToggle = true;
         this.ageToggleText = "Death";
-        this.covidAgeChart.data.datasets[0].data = [
-          this.covidDataAge[0].death, this.covidDataAge[1].death,
-          this.covidDataAge[2].death, this.covidDataAge[3].death,
-          this.covidDataAge[4].death, this.covidDataAge[5].death,
-          this.covidDataAge[6].death, this.covidDataAge[7].death,
-          this.covidDataAge[8].death
-        ];
       }
       else {
         this.ageToggle = false;
         this.ageToggleText = "Infection";
-        this.covidAgeChart.data.datasets[0].data =[
-          this.covidDataAge[0].confCase, this.covidDataAge[1].confCase,
-          this.covidDataAge[2].confCase, this.covidDataAge[3].confCase,
-          this.covidDataAge[4].confCase, this.covidDataAge[5].confCase,
-          this.covidDataAge[6].confCase, this.covidDataAge[7].confCase,
-          this.covidDataAge[8].confCase
-        ]
       }
-    
+
+      this.populateCovidDataAge();
+
       this.covidAgeChart.update();
     }
 
@@ -108,35 +87,13 @@ export class CovidTrackerComponent implements AfterViewInit {
       if(this.regionToggle == false) {
         this.regionToggle = true;
         this.regionToggleText = "Death";
-        this.totalInfDeathRegion = this.covidDataRegion[18].deathCnt;
-        this.covidRegionChart.data.datasets[0].data = [ 
-          this.covidDataRegion[0].deathCnt, this.covidDataRegion[1].deathCnt,
-          this.covidDataRegion[2].deathCnt, this.covidDataRegion[3].deathCnt,
-          this.covidDataRegion[4].deathCnt, this.covidDataRegion[5].deathCnt,
-          this.covidDataRegion[6].deathCnt, this.covidDataRegion[7].deathCnt,
-          this.covidDataRegion[8].deathCnt, this.covidDataRegion[9].deathCnt,
-          this.covidDataRegion[10].deathCnt, this.covidDataRegion[11].deathCnt,
-          this.covidDataRegion[12].deathCnt, this.covidDataRegion[13].deathCnt,
-          this.covidDataRegion[14].deathCnt, this.covidDataRegion[15].deathCnt,
-          this.covidDataRegion[16].deathCnt, this.covidDataRegion[17].deathCnt
-        ]
       }
       else {
         this.regionToggle = false;
         this.regionToggleText = "Infection";
-        this.totalInfDeathRegion = this.covidDataRegion[18].defCnt;
-        this.covidRegionChart.data.datasets[0].data = [ 
-          this.covidDataRegion[0].defCnt, this.covidDataRegion[1].defCnt,
-          this.covidDataRegion[2].defCnt, this.covidDataRegion[3].defCnt,
-          this.covidDataRegion[4].defCnt, this.covidDataRegion[5].defCnt,
-          this.covidDataRegion[6].defCnt, this.covidDataRegion[7].defCnt,
-          this.covidDataRegion[8].defCnt, this.covidDataRegion[9].defCnt,
-          this.covidDataRegion[10].defCnt, this.covidDataRegion[11].defCnt,
-          this.covidDataRegion[12].defCnt, this.covidDataRegion[13].defCnt,
-          this.covidDataRegion[14].defCnt, this.covidDataRegion[15].defCnt,
-          this.covidDataRegion[16].defCnt, this.covidDataRegion[17].defCnt
-        ]
       }
+
+      this.populateCovidDataRegion();
       this.covidRegionChart.update();
     }
 
@@ -144,13 +101,7 @@ export class CovidTrackerComponent implements AfterViewInit {
 
   public getCovidData(eventDate: any) {
 
-
-    let yesterdayDate = new Date(this.selectedDate.value);
-    yesterdayDate.setDate(this.selectedDate.value.getDate() - 1);
-
-    this.todaysDate = yesterdayDate;
-    this.today
-    this.covidDataClient.getCovidDataForToday(yesterdayDate).subscribe((data:any)=>{
+    this.covidDataClient.getCovidDataForToday(this.selectedDate.value).subscribe((data:any)=>{
 
       let today = data.response.body.items.item[0];
       let yesterday = data.response.body.items.item[1];
@@ -160,23 +111,13 @@ export class CovidTrackerComponent implements AfterViewInit {
 
     });
 
-    this.covidDataClient.getCovidDataByGenderAndAge(yesterdayDate, yesterdayDate).subscribe((data : any)=>{
+    this.covidDataClient.getCovidDataByGenderAndAge(this.selectedDate.value, this.selectedDate.value).subscribe((data : any)=>{
       if(this.covidDataGender != undefined && this.covidDataGender.length > 1) {
         this.covidDataGender = data.response.body.items.item.splice(9, 11);
         this.covidDataAge = data.response.body.items.item.splice(0, 9);
 
-        this.covidGenderChart.data.datasets[0].data = [
-          this.covidDataGender[0].confCase, this.covidDataGender[1].confCase
-        ];
-
-        this.covidAgeChart.data.datasets[0].data = [
-          this.covidDataAge[0].confCase, this.covidDataAge[1].confCase,
-          this.covidDataAge[2].confCase, this.covidDataAge[3].confCase,
-          this.covidDataAge[4].confCase, this.covidDataAge[5].confCase,
-          this.covidDataAge[6].confCase, this.covidDataAge[7].confCase,
-          this.covidDataAge[8].confCase
-        ];
-
+        this.populateCovidDataGender();
+        this.populateCovidDataAge();
 
         this.covidAgeChart.update();
         this.covidGenderChart.update();
@@ -188,24 +129,11 @@ export class CovidTrackerComponent implements AfterViewInit {
 
     });
 
-    this.covidDataClient.getCovidDataByRegion(yesterdayDate, yesterdayDate).subscribe((data : any)=> {
+    this.covidDataClient.getCovidDataByRegion(this.selectedDate.value, this.selectedDate.value).subscribe((data : any)=> {
       if( this.covidDataRegion != undefined && this.covidDataRegion.length > 1) {
 
         this.covidDataRegion = data.response.body.items.item;
-        this.totalInfDeathRegion = this.covidDataRegion[18].defCnt;
-        
-        this.covidRegionChart.data.datasets[0].data = [ 
-          this.covidDataRegion[0].defCnt, this.covidDataRegion[1].defCnt,
-          this.covidDataRegion[2].defCnt, this.covidDataRegion[3].defCnt,
-          this.covidDataRegion[4].defCnt, this.covidDataRegion[5].defCnt,
-          this.covidDataRegion[6].defCnt, this.covidDataRegion[7].defCnt,
-          this.covidDataRegion[8].defCnt, this.covidDataRegion[9].defCnt,
-          this.covidDataRegion[10].defCnt, this.covidDataRegion[11].defCnt,
-          this.covidDataRegion[12].defCnt, this.covidDataRegion[13].defCnt,
-          this.covidDataRegion[14].defCnt, this.covidDataRegion[15].defCnt,
-          this.covidDataRegion[16].defCnt, this.covidDataRegion[17].defCnt
-        ]
-
+        this.populateCovidDataRegion();
         this.covidRegionChart.update();
       }
       else {
@@ -215,10 +143,77 @@ export class CovidTrackerComponent implements AfterViewInit {
   }
 
 
+  public populateCovidDataGender() {
+
+    if(this.genderToggle == true) {
+      this.covidGenderChart.data.datasets[0].data = [
+        this.covidDataGender[0].death, this.covidDataGender[1].death
+      ];
+    }
+    else {
+      this.covidGenderChart.data.datasets[0].data = [
+        this.covidDataGender[0].confCase, this.covidDataGender[1].confCase
+      ];
+    }
+  }
+
+  public populateCovidDataAge() {
+    if(this.ageToggle == true) {
+      this.covidAgeChart.data.datasets[0].data = [
+        this.covidDataAge[0].death, this.covidDataAge[1].death,
+        this.covidDataAge[2].death, this.covidDataAge[3].death,
+        this.covidDataAge[4].death, this.covidDataAge[5].death,
+        this.covidDataAge[6].death, this.covidDataAge[7].death,
+        this.covidDataAge[8].death
+      ];
+    }
+    else {
+      this.covidAgeChart.data.datasets[0].data =[
+        this.covidDataAge[0].confCase, this.covidDataAge[1].confCase,
+        this.covidDataAge[2].confCase, this.covidDataAge[3].confCase,
+        this.covidDataAge[4].confCase, this.covidDataAge[5].confCase,
+        this.covidDataAge[6].confCase, this.covidDataAge[7].confCase,
+        this.covidDataAge[8].confCase
+      ]
+    }
+  }
+
+  public populateCovidDataRegion() {
+
+    if(this.regionToggle == true) {
+      this.totalInfDeathRegion = this.covidDataRegion[18].deathCnt;
+      this.covidRegionChart.data.datasets[0].data = [ 
+        this.covidDataRegion[0].deathCnt, this.covidDataRegion[1].deathCnt,
+        this.covidDataRegion[2].deathCnt, this.covidDataRegion[3].deathCnt,
+        this.covidDataRegion[4].deathCnt, this.covidDataRegion[5].deathCnt,
+        this.covidDataRegion[6].deathCnt, this.covidDataRegion[7].deathCnt,
+        this.covidDataRegion[8].deathCnt, this.covidDataRegion[9].deathCnt,
+        this.covidDataRegion[10].deathCnt, this.covidDataRegion[11].deathCnt,
+        this.covidDataRegion[12].deathCnt, this.covidDataRegion[13].deathCnt,
+        this.covidDataRegion[14].deathCnt, this.covidDataRegion[15].deathCnt,
+        this.covidDataRegion[16].deathCnt, this.covidDataRegion[17].deathCnt
+      ]
+    }
+    else {
+      this.totalInfDeathRegion = this.covidDataRegion[18].defCnt;
+      this.covidRegionChart.data.datasets[0].data = [ 
+        this.covidDataRegion[0].defCnt, this.covidDataRegion[1].defCnt,
+        this.covidDataRegion[2].defCnt, this.covidDataRegion[3].defCnt,
+        this.covidDataRegion[4].defCnt, this.covidDataRegion[5].defCnt,
+        this.covidDataRegion[6].defCnt, this.covidDataRegion[7].defCnt,
+        this.covidDataRegion[8].defCnt, this.covidDataRegion[9].defCnt,
+        this.covidDataRegion[10].defCnt, this.covidDataRegion[11].defCnt,
+        this.covidDataRegion[12].defCnt, this.covidDataRegion[13].defCnt,
+        this.covidDataRegion[14].defCnt, this.covidDataRegion[15].defCnt,
+        this.covidDataRegion[16].defCnt, this.covidDataRegion[17].defCnt
+      ]
+    }    
+  }
+
+
   public generateCovidGraphGender(data: any) {
       
-      this.covidDataGender = data.response.body.items.item.splice(9,11);          
-      // this.covidDataGender = this.latestGenderData;         //static test data
+      this.covidDataGender = data.response.body.items.item.splice(9,11);
 
       this.canvasGender = document.getElementById('covidGenderChart');
       this.ctxGender = this.canvasGender.getContext('2d');
@@ -247,7 +242,6 @@ export class CovidTrackerComponent implements AfterViewInit {
   
   public generateCovidGraphAge(data: any) {
       this.covidDataAge = data.response.body.items.item.splice(0, 9);
-      // this.covidDataAge = this.latestGenderData;    //test static data
 
       this.canvasAge = document.getElementById('covidAgeChart');
       this.ctxAge = this.canvasAge.getContext('2d')
@@ -325,8 +319,8 @@ export class CovidTrackerComponent implements AfterViewInit {
 }
 
   ngAfterViewInit() {
-    let yesterdayDate = new Date(this.selectedDate.value);
-    yesterdayDate.setDate(this.selectedDate.value.getDate() - 1);
+    let yesterdayDate = new Date();
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
 
     this.selectedDate = new FormControl(yesterdayDate);
     
