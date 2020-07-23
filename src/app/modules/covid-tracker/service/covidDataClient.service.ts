@@ -37,7 +37,7 @@ export class CovidDataClient {
     return response;
   }
 
-  public getCovidDataByGenderAndAge(startCreateDt : string, endCreateDt : string): Observable<any> {
+  public getCovidDataByGenderAndAge(startCreateDt, endCreateDt): Observable<any> {
     let myHeaders = new HttpHeaders();
     myHeaders = myHeaders.set('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
 
@@ -53,7 +53,7 @@ export class CovidDataClient {
     return response;
   }
 
-  public getCovidDataByRegion(startCreateDt: string, endCreateDt: string) :Observable<any> {
+  public getCovidDataByRegion(startCreateDt, endCreateDt) :Observable<any> {
     let myHeaders = new HttpHeaders();
     myHeaders = myHeaders.set('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
 
